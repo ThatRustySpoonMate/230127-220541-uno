@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 
+
 uint16_t adc_reading;
 uint16_t calibratedBaseline = 16500; // Set to not 16500 to manually assign the baseline 
 float voltageRef = 5000; // milliVolts
