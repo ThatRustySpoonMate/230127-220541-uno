@@ -24,7 +24,6 @@ void calibrateADC() {
 // Samples param1 number of conversions from ADC and returns the average of the sum of them all
 uint16_t takeAverageReading(uint8_t numSamples) {
 
-  
   uint32_t result = 0;
   
   for(uint16_t iter = 0; iter < numSamples; iter++) {
