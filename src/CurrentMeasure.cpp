@@ -13,22 +13,22 @@ float voltageDifference;
 float circuitCurrent;
 
 void calibrateADC();
-uint16_t takeAverageReading(uint8_t numSamples);
+uint16_t takeAverageReading(uint8_t numSamples, uint8_t channel);
 
 void calibrateADC() {
   delay(10); // Give time for ADC to stabilize
 
-  calibratedBaseline  = takeAverageReading(64); // Average 64 samples
+  calibratedBaseline  = takeAverageReading(64, A0); // Average 64 samples
 
 }
 
 // Samples param1 number of conversions from ADC and returns the average of the sum of them all
-uint16_t takeAverageReading(uint8_t numSamples) {
+uint16_t takeAverageReading(uint8_t numSamples, uint8_t channel) {
 
   uint32_t result = 0;
   
   for(uint16_t iter = 0; iter < numSamples; iter++) {
-    result += analogRead(A0);
+    result += analogRead(channel);
   }
 
   result = result / numSamples;
@@ -72,7 +72,7 @@ void loop() {
   
   // put your main code here, to run repeatedly:
 
-  adc_reading = takeAverageReading(16); // Average 16 samples into one reading
+  adc_reading = takeAverageReading(16, A0); // Average 16 samples into one reading
   voltageReading = (float)adc_reading / 1023 * voltageRef; // Convert ADC reading into a voltage 
   Serial.print(adc_reading);
   Serial.print(":  ");
