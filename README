@@ -1,0 +1,8 @@
+Required Components:
+1 x Arduino Uno R3
+1x LTS 25-NP
+
+
+This project is currently setup to use the LTS 25-NP Current Transducer
+and the built-in 10-bit SAR ADC of the ATMEL ATMEGA3828P. This may change
+as time goes on.
