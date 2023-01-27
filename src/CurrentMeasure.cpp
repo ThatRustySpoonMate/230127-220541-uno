@@ -1,9 +1,10 @@
 #include <Arduino.h>
 
+//#define ManualBaseline 523 // Uncomment to set a manual baseline
 
 
 uint16_t adc_reading;
-uint16_t calibratedBaseline = 16500; // Set to not 16500 to manually assign the baseline 
+uint16_t calibratedBaseline = 0; // ADC reading with no load connected
 float voltageRef = 5000; // milliVolts
 float voltageBaseline = 0;
 
@@ -47,15 +48,19 @@ void setup() {
   
    
   // Handle calibrating ADC readings
-  if(calibratedBaseline == 16500){
-    Serial.print("Calibrating ADC Baseline, make sure load is disconnected...");
-    delay(2000);
-    calibrateADC();
-    Serial.println("Complete");
-  } else { 
-    Serial.println("ADC baseline has been manually set, no calibration necessary.");
-    delay(500);
-  }
+  #ifndef ManualBaseline
+  Serial.print("Calibrating ADC Baseline, make sure load is disconnected...");
+  delay(2000);
+  calibrateADC();
+  Serial.println("Complete");
+  #endif
+
+  #ifdef ManualBaseline
+  calibratedBaseline = ManualBaseline;
+  Serial.println("ADC baseline has been manually set, no calibration necessary.");
+  delay(500);
+  #endif
+  
 
   Serial.print("Baseline set to: ");
   Serial.println(calibratedBaseline);
