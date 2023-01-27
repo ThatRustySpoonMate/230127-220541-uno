@@ -58,7 +58,7 @@ void setup() {
   Serial.print("Baseline set to: ");
   Serial.println(calibratedBaseline);
 
-  voltageBaseline = (float)calibratedBaseline / 1023 * voltageRef; // Set to 1023 or 1024
+  voltageBaseline = (float)calibratedBaseline / 1023 * voltageRef; // Convert ADC reading into a voltage 
 
   Serial.print("Voltage Reference: ");
   Serial.print(voltageBaseline);
@@ -72,7 +72,7 @@ void loop() {
   // put your main code here, to run repeatedly:
 
   adc_reading = takeAverageReading(16); // Average 16 samples into one reading
-  voltageReading = (float)adc_reading / 1023 * voltageRef; // Set to 1023 or 1024
+  voltageReading = (float)adc_reading / 1023 * voltageRef; // Convert ADC reading into a voltage 
   Serial.print(adc_reading);
   Serial.print(":  ");
   
