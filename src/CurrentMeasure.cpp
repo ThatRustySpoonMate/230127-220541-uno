@@ -17,8 +17,9 @@ uint16_t takeAverageReading(uint8_t numSamples);
 
 void calibrateADC() {
   delay(10); // Give time for ADC to stabilize
-  
+
   calibratedBaseline  = takeAverageReading(64); // Average 64 samples
+
 }
 
 // Samples param1 number of conversions from ADC and returns the average of the sum of them all
@@ -84,5 +85,7 @@ void loop() {
   Serial.print(circuitCurrent);
   Serial.println("A");
 
-  delay(1000);
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+
+  delay(1000); // Update every 1s
 }
