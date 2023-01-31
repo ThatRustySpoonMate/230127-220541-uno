@@ -8,7 +8,7 @@ uint16_t calibratedBaseline = 0; // ADC reading with no load connected
 float voltageRef = 5000; // milliVolts
 float voltageBaseline = 0;
 
-float ADCMillivoltsPerAmp = 25; // ADC Sensitivity
+const float ADCMillivoltsPerAmp = 25; // ADC Sensitivity
 
 float voltageReading;
 float voltageDifference;
